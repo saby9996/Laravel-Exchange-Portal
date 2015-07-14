@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['username', 'email', 'password', 'verification_token'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,4 +32,82 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function ppreference()
+    {
+        return $this->hasOne('Swapstr\Ppreference');
+    }
+
+    /**
+     * User has one email preference.
+     */
+    public function epreference()
+    {
+        return $this->hasOne('Swapstr\Epreference');
+    }
+
+    /**
+     * User has many search preferences.
+     */
+    public function spreferences()
+    {
+        return $this->hasMany('Swapstr\Spreference');
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany('Swapstr\Wishlist');
+    }
+
+    /**
+     * User has many reports.
+     */
+    public function reports()
+    {
+        return $this->morphMany('Swapstr\Report', 'target');
+    }
+
+    public function blocklist()
+    {
+        return $this->hasMany('Swapstr\Block', 'blocker');
+    }
+
+    public function items()
+    {
+        return $this->hasMany('Swapstr\Item', 'owner');
+    }
+
+    public function offered()
+    {
+        return $this->hasMany('Swapstr\Exchange', 'offered_by');
+    }
+
+    /**
+     * User has many notifications.
+     */
+    public function notifications()
+    {
+        return $this->hasMany('Swapstr\Notification');
+    }
+
+    /**
+     * User belongs to conversations.
+     */
+    public function conversations()
+    {
+        return $this->belongsToMany('Swapstr\Conversation', 'participants');
+    }
+
+    /**
+     * User has many interests.
+     */
+    public function interests()
+    {
+        return $this->belongsToMany('Swapstr\Interest', 'interest_user');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('Swapstr\Profile');
+    }
 }
