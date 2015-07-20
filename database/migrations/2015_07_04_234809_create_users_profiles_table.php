@@ -19,17 +19,13 @@ class CreateUsersProfilesTable extends Migration
             $table->foreign('user_id')->references('id')
                   ->on('users')->onDelete('cascade');
 
-            $table->string('first_name', 30);
+            $table->string('firstname', 30);
             
-            $table->string('last_name', 30);
+            $table->string('lastname', 30);
             
             $table->enum('gender', ['male', 'female']);
             
-            $table->string('phone', 10);
-            
-            $table->integer('address_id')->unsigned()->index();
-            $table->foreign('address_id')->references('id')
-                  ->on('addresses')->onDelete('cascade');
+            $table->string('phone', 10)->nullable();
 
             $table->timestamp('last_login');
             

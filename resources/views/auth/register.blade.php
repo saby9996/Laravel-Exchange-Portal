@@ -7,19 +7,34 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+					
+					@include('errors.alert')
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">First Name</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Last Name</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">
+							{!! Form::label('gender', 'Gender') !!}
+							</label>
+							<div class="col-md-6">
+							{!! Form::select('gender', ['male' => 'Male' , 'female' => 'Female'], null, ['class' => 'form-control']) !!}
+							</div>
+						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Username</label>

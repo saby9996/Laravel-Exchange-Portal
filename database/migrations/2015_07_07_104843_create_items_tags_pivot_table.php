@@ -32,6 +32,6 @@ class CreateItemsTagsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::down('item_tag');
+        Schema::drop('item_tag');
     }
 }

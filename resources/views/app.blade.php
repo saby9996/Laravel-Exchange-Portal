@@ -23,8 +23,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" style="color: #333; font-size: 16pt;">
-                        Swapstr
+                    <a class="navbar-brand" href="#" style="color: #333;">
+                        <span style='font-size: 16pt;'>Swapstr </span>| 
+                        <span style='font-size: 12pt'>Because, money can't buy everything!</span>
                     </a>
                 </div>
 
@@ -39,7 +40,8 @@
             @include('flash::message')
             @yield('content')
         </div>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('/js/bootstrap/bootstrap.min.js') }}"></script>
         <script>
             $('#flash-overlay-modal').modal();
         </script>

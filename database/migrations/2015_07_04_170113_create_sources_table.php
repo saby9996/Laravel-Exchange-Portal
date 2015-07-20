@@ -28,6 +28,6 @@ class CreateSourcesTable extends Migration
      */
     public function down()
     {
-        Schema::down('sources');
+        Schema::drop('sources');
     }
 }

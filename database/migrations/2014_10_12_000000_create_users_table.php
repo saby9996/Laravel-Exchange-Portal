@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password', 60);
+            // $table->string('provider')->nullable();
+            // $table->string('provider_id')->unique()->nullable();
             $table->enum('status',['inactive', 'active', 'banned'])->default('inactive');
             $table->enum('level',['user', 'admin', 'other'])->default('user');
             $table->string('verification_token', 50)->nullable();

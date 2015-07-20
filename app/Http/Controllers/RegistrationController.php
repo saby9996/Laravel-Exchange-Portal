@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Swapstr\User;
 use Exception;
+use Laracasts\Flash\Flash;
 
 use Swapstr\Http\Requests;
 use Swapstr\Http\Controllers\Controller;

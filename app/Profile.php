@@ -11,6 +11,13 @@ class Profile extends Model
 	 * @var string
 	 */
 	protected $table = 'profiles';
+	
+	/**
+	 * Mass assignment attributes.
+	 * @var array
+	 */
+	protected $fillable = ['user_id', 'firstname', 'lastname', 'gender'];
+
 	/**
 	 * Date attributes in profile table.
 	 * @var array
@@ -30,6 +37,11 @@ class Profile extends Model
 	*/
 	public function photos()
 	{
-		return $this->morphMany('Swapstr\Photo', 'imageable');
+		return $this->morphOne('Swapstr\Photo', 'imageable');
 	}
+
+	public function address()
+    {
+        return $this->morphOne('Swapstr\Address', 'addressable');
+    }
 }

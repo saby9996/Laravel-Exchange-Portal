@@ -53,4 +53,9 @@ class Item extends Model
 	{
 		return $this->morphMany('Swapstr\Photo', 'imageable');
 	}
+
+	public function address()
+	{
+		return $this->morphOne('Swapstr\Address','addressable');
+	}
 }

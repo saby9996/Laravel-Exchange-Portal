@@ -29,10 +29,6 @@ class CreateItemsTable extends Migration
             
             $table->text('description');
 
-            $table->integer('address_id')->unsigned()->index();
-            $table->foreign('address_id')->references('id')
-                  ->on('addresses')->onDelete('cascade');
-
             $table->timestamp('exchange_from');
             
             $table->timestamp('exchange_till');

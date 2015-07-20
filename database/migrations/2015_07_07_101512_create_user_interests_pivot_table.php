@@ -30,6 +30,6 @@ class CreateUserInterestsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::down('interest_user');
+        Schema::drop('interest_user');
     }
 }

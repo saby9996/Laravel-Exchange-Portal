@@ -34,6 +34,6 @@ class CreateItemsListTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('items_lists');
     }
 }

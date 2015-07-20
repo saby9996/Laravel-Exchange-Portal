@@ -14,14 +14,22 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function(Blueprint $table){
             $table->increments('id');
+
+            $table->string('addressable_type');
+
+            $table->integer('addressable_id')->unsigned()->index();
+            
             $table->text('line1');
-            $table->text('line2');
+            
+            $table->text('line2')->nullable();
 
             $table->integer('location_id')->unsigned()->index();
             $table->foreign('location_id')->references('id')
                   ->on('locations')->onDelete('cascade');
 
             $table->string('pincode', 7);
+
+            $table->timestamps();
         });
     }
 
@@ -32,6 +40,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::down('addresses');
+        Schema::drop('addresses');
     }
 }

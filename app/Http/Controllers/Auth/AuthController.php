@@ -2,11 +2,17 @@
 
 namespace Swapstr\Http\Controllers\Auth;
 
-use Swapstr\User;
 use Validator;
 use Swapstr\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
+use Swapstr\User;
+use Swapstr\Profile;
+use Event;
+use Swapstr\Events\UserRegistered;
+
+use Request;
 
 class AuthController extends Controller
 {
@@ -22,6 +28,8 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
+    protected $redirectTo = '/update/profile/contact_details';
 
     /**
      * Create a new authentication controller instance.
@@ -42,6 +50,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'firstname' => 'required|max:255|min:2',
+            'lastname'  => 'required|max:255|min:2',
+            'gender'    => 'required',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
@@ -66,11 +77,14 @@ class AuthController extends Controller
             'verification_token' => $verification_token
             ]);
 
-        Mail::send('email.verify', $verification_token, function($message) 
-        {
-            $message->to(Input::get('email'), Input::get('username'))
-                    ->subject('Swapstr - Email verification');
-        });
+        Profile::create([
+            'user_id'   => $user->id,
+            'firstname' => $data['firstname'],
+            'lastname'  => $data['lastname'],
+            'gender'    => $data['gender'],
+            ]);
+
+        Event::fire(new UserRegistered($user));
 
         return $user;
     }

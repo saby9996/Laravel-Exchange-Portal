@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Swapstr\Events\SomeEvent' => [
-            'Swapstr\Listeners\EventListener',
+        'Swapstr\Events\UserRegistered' => [
+            'Swapstr\Listeners\AccountVerificationEmail',
         ],
     ];
 

@@ -17,7 +17,8 @@
 							</ul>
 						</div>
 					@endif
-
+					{{-- <a href="/login/facebook">{!! Form::button('Login with Facebook', ['class' => 'btn btn-primary']) !!}</a> --}}
+					
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
