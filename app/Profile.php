@@ -40,8 +40,4 @@ class Profile extends Model
 		return $this->morphOne('Swapstr\Photo', 'imageable');
 	}
 
-	public function address()
-    {
-        return $this->morphOne('Swapstr\Address', 'addressable');
-    }
 }

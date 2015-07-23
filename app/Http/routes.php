@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('app');
+    return view('auth/login');
 });
 
 Route::get('update/profile/photo', 'Home\HomeController@getUpdatePhoto');

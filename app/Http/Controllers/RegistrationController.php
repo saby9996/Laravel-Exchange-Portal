@@ -34,6 +34,6 @@ class RegistrationController extends Controller
 
         Flash::overlay('You have successfully verified your account.', 'Congratulations');
 
-        return redirect('auth.login');
+        return redirect('auth/login');
     }
 }

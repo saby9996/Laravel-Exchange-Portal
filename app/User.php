@@ -110,4 +110,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasOne('Swapstr\Profile');
     }
+
+    /**
+     * Get the addresses related to a profile.
+     */
+    public function address()
+    {
+        return $this->morphOne('Swapstr\Address', 'addressable');
+    }
 }

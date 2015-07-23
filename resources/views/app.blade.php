@@ -27,6 +27,8 @@
                         <span style='font-size: 16pt;'>Swapstr </span>| 
                         <span style='font-size: 12pt'>Because, money can't buy everything!</span>
                     </a>
+                    @if(Auth::check())<a href="/auth/logout" class="navbar-brand"><button class="btn btn-danger">Logout</button></a>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

@@ -14,6 +14,7 @@ use Swapstr\Region;
 use Swapstr\Country;
 use Swapstr\Location;
 use Swapstr\Profile;
+use Swapstr\Address;
 
 class HomeController extends Controller
 {
@@ -32,17 +33,20 @@ class HomeController extends Controller
 
     	$profile = \Auth::user()->profile;
 
-    	$profile['line1'] = $profile->address->line1;
+    	if ($profile->address) {
 
-    	$profile['line2'] = $profile->address->line2;
+    		$profile['line1'] = $profile->address->line1;
 
-    	$profile['pincode'] = $profile->address->pincode;
+	    	$profile['line2'] = $profile->address->line2;
 
-    	$profile['country'] = $profile->address->location->country->name;
+	    	$profile['pincode'] = $profile->address->pincode;
 
-    	$profile['city'] = $profile->address->location->city->name;
+	    	$profile['country'] = $profile->address->location->country->name;
 
-    	$profile['region'] = $profile->address->location->region->name;
+	    	$profile['city'] = $profile->address->location->city->name;
+
+	    	$profile['region'] = $profile->address->location->region->name;
+    	}
 
     	return view('profiles.update', compact('countries', 'cities', 'regions', 'profile'));
     }
@@ -68,6 +72,8 @@ class HomeController extends Controller
     	$profile = Profile::where('user_id', $user)->first();
 
     	$address_data['location_id'] = $location->id;
+
+    	$address_data['addressable_id'] = $profile->user_id;
 
     	$address = Profile::find($profile->id)->address()->update($address_data);
 

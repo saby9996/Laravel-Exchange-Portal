@@ -14,7 +14,7 @@
 
 						<div class="form-group">
 						{!! Form::label('filename', 'Profile photo:') !!}
-						{!! Form::file('filename', ['class' => 'form-control']) !!}
+						{!! Form::file('filename', ['class' => 'form-control btn btn-default']) !!}
 						</div>
 
 						<div class="form-group">
@@ -22,7 +22,6 @@
 							{!! Form::button('Skip', ['class' => 'btn btn-primary']) !!}
 						</a>
 
-						<div class="form-group">
 							{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 						</div>
 
