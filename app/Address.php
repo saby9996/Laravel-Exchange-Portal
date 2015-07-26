@@ -31,6 +31,11 @@ class Address extends Model
     	return $this->belongsTo('Swapstr\Location');
     }
 
+    /**
+     * Create or Update an address.
+     * @param  array $address_data
+     * @return array     
+     */
     public function createOrUpdate($address_data)
     {
         if(\Auth::user()->address()->count()){

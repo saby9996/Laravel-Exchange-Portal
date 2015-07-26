@@ -3,9 +3,12 @@
 namespace Swapstr;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
+	use SoftDeletes;
+	
 	protected $table = 'items';
 
 	protected $fillable = ['category_id', 'title', 'slug', 'description', 
@@ -15,7 +18,7 @@ class Item extends Model
      * Date attributes in items table.
      * @var array
      */
-    protected $dates = ['exchange_from', 'exchange_till', 'deleted_at'];
+    protected $dates = ['deleted_at', 'exchange_from', 'exchange_till'];
 	/**
 	* Get all of the item's reports.
 	*/

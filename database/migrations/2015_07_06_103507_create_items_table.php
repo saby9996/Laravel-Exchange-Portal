@@ -25,13 +25,13 @@ class CreateItemsTable extends Migration
 
             $table->string('title', 40);
 
-            $table->string('slug', 50);
+            $table->string('slug', 50)->unique();
             
             $table->text('description');
 
-            $table->timestamp('exchange_from');
+            $table->timestamp('exchange_from')->nullable();
             
-            $table->timestamp('exchange_till');
+            $table->timestamp('exchange_till')->nullable();
             
             $table->boolean('exchange')->default(0);
             

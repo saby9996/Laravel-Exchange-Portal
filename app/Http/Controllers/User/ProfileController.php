@@ -12,6 +12,7 @@ use Swapstr\City;
 use Swapstr\Region;
 use Swapstr\Country;
 use Swapstr\Location;
+use Swapstr\Address;
 
 class ProfileController extends Controller
 {
@@ -44,7 +45,7 @@ class ProfileController extends Controller
      * @param  UpdateUserContactDetails $request
      * @return Redirect
      */
-    public function postUpdateContactDetails(UpdateUserContactDetails $request)
+    public function postUpdateContactDetails(UpdateUserContactDetails $request, Address $address)
     {
     	\Auth::user()->profile()->update($request->only('phone'));
 
@@ -58,7 +59,7 @@ class ProfileController extends Controller
 
     	$address_data['location_id'] = $location->id;
 
-    	\Auth::user()->address->createOrUpdate($address_data);
+    	$address->createOrUpdate($address_data);
 
     	return redirect('update/profile/photo');
     }

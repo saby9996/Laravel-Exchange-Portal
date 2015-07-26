@@ -24,9 +24,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        // $router->bind('items', function($value)
+        // {
+        //     return Item::where('slug', $value)->first();
+        // });
 
         parent::boot($router);
+
+        $router->model('items', 'Swapstr\Item');
     }
 
     /**
