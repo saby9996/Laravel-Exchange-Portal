@@ -56,6 +56,6 @@ class Item extends Model
 
 	public function address()
 	{
-		return $this->morphOne('Swapstr\Address','addressable');
+		return $this->morphOne('Swapstr\Address', 'addressable');
 	}
 }

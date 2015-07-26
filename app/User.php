@@ -118,4 +118,26 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->morphOne('Swapstr\Address', 'addressable');
     }
+
+    /**
+     * Get user's contact details.
+     * @return array
+     */
+    public function contact_details()
+    {
+        if(!$this->address) {
+            $contact_details = "";
+        }
+        else {
+            $contact_details['phone'] = $this->profile->phone;
+            $contact_details['line1'] = $this->address->line1;
+            $contact_details['line2'] = $this->address->line2;
+            $contact_details['city'] = $this->address->location->city->name;
+            $contact_details['region'] = $this->address->location->region->name;
+            $contact_details['country'] = $this->address->location->country->name;
+            $contact_details['pincode'] = $this->address->pincode;
+        }
+
+        return $contact_details;
+    }
 }

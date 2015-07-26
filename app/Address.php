@@ -30,4 +30,14 @@ class Address extends Model
     {
     	return $this->belongsTo('Swapstr\Location');
     }
+
+    public function createOrUpdate($address_data)
+    {
+        if(\Auth::user()->address()->count()){
+            \Auth::user()->address()->update($address_data);
+        }
+        else {
+            \Auth::user()->address()->firstOrCreate($address_data);
+        }
+    }
 }

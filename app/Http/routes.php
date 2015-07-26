@@ -4,14 +4,6 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('update/profile/photo', 'Home\HomeController@getUpdatePhoto');
-
-Route::post('update/profile/photo', 'Home\HomeController@postUpdatePhoto');
-
-Route::get('update/profile/contact_details', 'Home\HomeController@getUpdateProfile');
-
-Route::post('update/profile/contact_details', 'Home\HomeController@postUpdateProfile');
-
 Route::get('register/verify/{verificationToken}', [
     'as' => 'confirmation_path',
     'uses' => 'RegistrationController@confirm'
@@ -21,6 +13,16 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 	]);
+
+Route::get('update/profile/contact', 'User\ProfileController@getUpdateContactDetails');
+
+Route::post('update/profile/contact', 'User\ProfileController@postUpdateContactDetails');
+
+Route::get('update/profile/photo', 'User\ProfileController@getUpdatePhoto');
+
+Route::post('update/profile/photo', 'User\ProfileController@postUpdatePhoto');
+
+Route::resource('items', 'ItemsController');
 
 // Route::get('/login/{provider?}','Auth\AuthController@login');
 
